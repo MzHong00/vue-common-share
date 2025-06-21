@@ -15,11 +15,12 @@ export const useAlertStore = defineStore('alert', {
     queue: [],
   }),
   actions: {
-    alertEnqueue(alert: AlertTypes) {
-      this.queue.push(alert)
+    alertEnqueue(alert: Omit<AlertTypes, 'uuid'>) {
+      const uuid = Math.floor(Math.random() * 100).toString()
+      this.queue.push({ uuid, ...alert })
 
       setTimeout(() => {
-        this.queue = this.queue.filter(({ uuid }) => alert.uuid !== uuid)
+        this.queue = this.queue.filter((ele) => uuid !== ele.uuid)
       }, 2000)
     },
   },
