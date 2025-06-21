@@ -26,6 +26,7 @@ export const useAlertStore = defineStore('alert', {
   },
 })
 
+// Alert 기능을 사용하기 위한 액션 함수
 export const useAlertAction = () => {
   const { alertEnqueue } = useAlertStore()
   return { alertEnqueue }
